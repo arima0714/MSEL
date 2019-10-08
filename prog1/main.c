@@ -13,7 +13,7 @@ void draw_sq(float x, float y, float w, float h){
 }
 
 void draw_line_sq(float x, float y, float w, float h, float R, float G, float B){
-	glColor3d(1.0, 1.0, 0.0);
+	glColor3d(R, G, B);
 
 	glBegin(GL_LINES);
 
@@ -41,7 +41,13 @@ void display(void){
 	// 本体
 	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
 	draw_sq(-0.4, -0.8, 0.8, 1.3);
-	draw_line_sq(-0.4, -0.8, 0.8, 1.3, 1.0, 1.0, 1.0);
+	draw_line_sq(-0.4, -0.8, 0.8, 1.3, 1.0, 1.0, 0.0);
+
+	// 台座
+	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
+	draw_sq(-0.5, -0.9, 1.0, 0.1);
+	draw_line_sq(-0.5, -0.9, 1.0, 0.1, 1.0, 1.0, 0.0);
+
 	glFlush();
 }
 
