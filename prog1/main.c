@@ -16,7 +16,7 @@ void display(void){
 }
 
 //左上の頂点座標を(x,y)として、幅w,高さhの四角形を描画する関数
-void draw_sq(int x, int y, int w, int h){
+void draw_sq(float x, float y, float w, float h){
 	glBegin(GL_POLYGON);
 	glVertex2d(x, y);
 	glVertex2d(x+w, y);
