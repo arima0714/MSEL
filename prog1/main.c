@@ -12,6 +12,26 @@ void draw_sq(float x, float y, float w, float h){
 	glEnd();
 }
 
+void draw_line_sq(float x, float y, float w, float h, float R, float G, float B){
+	glColor3d(1.0, 1.0, 0.0);
+
+	glBegin(GL_LINES);
+
+	glVertex2d(x, y);
+	glVertex2d(x+w, y);
+	
+	glVertex2d(x+w, y);
+	glVertex2d(x+w, y+h);
+
+	glVertex2d(x+w, y+h);
+	glVertex2d(x, y+h);
+
+	glVertex2d(x, y+h);
+	glVertex2d(x, y);
+
+	glEnd();
+}
+
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -21,14 +41,14 @@ void display(void){
 	// 本体
 	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
 	draw_sq(-0.4, -0.8, 0.8, 1.3);
-
+	draw_line_sq(-0.4, -0.8, 0.8, 1.3, 1.0, 1.0, 1.0);
 	glFlush();
 }
 
 void resize(int w, int h){
 	glViewport(0,0,w,h);	//ウィンドウ全体をビューポートにする
 	glLoadIdentity();	//変換行列の初期化
-	glOrtho(-w / 200.0, w / 200.0, -h /200.0, h / 200.0, -1.0, 1.0);	//スクリーン上の表示領域をビューポートの大きさに比例させる
+	glOrtho(-w / 400.0, w / 400.0, -h /400.0, h / 400.0, -1.0, 1.0);	//スクリーン上の表示領域をビューポートの大きさに比例させる
 }
 
 void init(void){
@@ -36,8 +56,8 @@ void init(void){
 }
 
 int main(int argc, char *argv[]){
-	glutInitWindowPosition(100,100);	//300x300のウィンドウを開く
-	glutInitWindowSize(320, 240);		//320,240の位置にウィンドウを開く
+	glutInitWindowPosition(400,400);	//300x300のウィンドウを開く
+	glutInitWindowSize(400, 400);		//320,240の位置にウィンドウを開く
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA);
 	glutCreateWindow(argv[0]);
