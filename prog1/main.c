@@ -15,6 +15,10 @@ void display(void){
 	glFlush();
 }
 
+//左上の頂点座標を(x,y)として、幅w,高さhの四角形を描画する関数
+void draw_sq(int x, int y, int w, int h){
+}
+
 void resize(int w, int h){
 	glViewport(0,0,w,h);	//ウィンドウ全体をビューポートにする
 	glLoadIdentity();	//変換行列の初期化
