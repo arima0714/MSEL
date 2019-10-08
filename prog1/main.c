@@ -17,6 +17,8 @@ void display(void){
 
 //左上の頂点座標を(x,y)として、幅w,高さhの四角形を描画する関数
 void draw_sq(int x, int y, int w, int h){
+	glBegin(GL_POLYGON);
+	glFlush();
 }
 
 void resize(int w, int h){
