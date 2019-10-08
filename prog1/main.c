@@ -72,6 +72,14 @@ void display(void){
 	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
 	draw_sq(-0.4, -0.8, 0.8, 1.3);
 	draw_line_sq(-0.4, -0.8, 0.8, 1.3, 1.0, 1.0, 0.0);
+	//	模様部分
+	float distance = 0.05;
+	float pattern_w = 0.22;
+	float pattern_h = 0.24;
+	for(int i = 1; i <= 4; i++){ 
+		draw_line_sq(-0.05-pattern_w, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h, 1.0, 1.0, 0.0);
+		draw_line_sq(+0.05, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h, 1.0, 1.0, 0.0);
+	}
 
 	// 台座
 	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
