@@ -1,5 +1,7 @@
 #include <GL/glut.h>
 
+
+
 //左下の頂点座標を(x,y)として、幅w,高さhの四角形を描画する関数
 void draw_sq(float x, float y, float w, float h){
 	glBegin(GL_POLYGON);
@@ -12,6 +14,7 @@ void draw_sq(float x, float y, float w, float h){
 	glEnd();
 }
 
+//左下の頂点座標を(x,y)として、幅w,高さhの四角形の枠最後の三引数をRGBとしたものを描画する関数
 void draw_line_sq(float x, float y, float w, float h, float R, float G, float B){
 	glColor3d(R, G, B);
 
@@ -64,9 +67,12 @@ void display(void){
 	//	ランプ部分
 	//		台座
 	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
-	draw_sq		(-0.10, 0.7, 0.20, 0.070);
-	draw_line_sq	(-0.10, 0.7, 0.20, 0.070, 1.0, 1.0, 0.0);
+	draw_sq		(-0.05, 0.7, 0.10, 0.050);
+	draw_line_sq	(-0.05, 0.7, 0.10, 0.050, 1.0, 1.0, 0.0);
 	//		ガラス部分
+	glColor3d(255.0/255.0, 255.0/255.0, 224.0/255.0);
+	draw_sq		(-0.03, 0.75, 0.06, 0.075);
+	draw_line_sq	(-0.03, 0.75, 0.06, 0.075, 1.0, 1.0, 0.0);
 	//		屋根
 	
 
