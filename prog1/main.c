@@ -1,27 +1,29 @@
 #include <GL/glut.h>
 
-void display(void){
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBegin(GL_POLYGON);
-	glColor3d(1.0, 0.0, 0.0);
-	glVertex2d(-0.9, -0.9);
-	glColor3d(0.0, 1.0, 0.0);
-	glVertex2d(0.9, -0.9);
-	glColor3d(1.0, 0.0, 1.0);
-	glVertex2d(0.9, 0.9);
-	glColor3d(1.0, 1.0, 0.0);
-	glVertex2d(-0.9, 0.9);
-	glEnd();
-	glFlush();
-}
-
-//左上の頂点座標を(x,y)として、幅w,高さhの四角形を描画する関数
+//左下の頂点座標を(x,y)として、幅w,高さhの四角形を描画する関数
 void draw_sq(float x, float y, float w, float h){
+	//glBegin(GL_POLYGON);
+	//glVertex2d(x, y);
+	//glVertex2d(x+w, y);
+	//glVertex2d(x+w, y-h);
+	//glVertex2d(x, y-h);
+	//glFlush();
+
 	glBegin(GL_POLYGON);
+
 	glVertex2d(x, y);
 	glVertex2d(x+w, y);
-	glVertex2d(x+w, y-h);
-	glVertex2d(x, y-h);
+	glVertex2d(x+w, y+h);
+	glVertex2d(x, y+h);
+
+	glEnd();
+}
+
+void display(void){
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glColor3d(1.0, 0.0, 0.0);
+	draw_sq(-0.9, -0.9, 1.8, 1.8);
 	glFlush();
 }
 
