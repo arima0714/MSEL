@@ -1,6 +1,33 @@
 #include <GL/glut.h>
 
+//三角形を描画する関数
+void draw_tri(float c_x, float c_y, float l_x, float l_y, float r_x, float r_y){
+	glBegin(GL_POLYGON);
 
+	glVertex2d(c_x, c_y);
+	glVertex2d(l_x, l_y);
+	glVertex2d(r_x, r_y);
+
+	glEnd();
+}
+
+//三角形の枠最後の三引数をRGBとしたものを描画する関数
+void draw_line_tri(float c_x, float c_y, float l_x, float l_y, float r_x, float r_y, float R, float G, float B){
+	glColor3d(R, G, B);
+
+	glBegin(GL_LINES);
+
+	glVertex2d(c_x, c_y);
+	glVertex2d(l_x, l_y);
+
+	glVertex2d(l_x, l_y);
+	glVertex2d(r_x, r_y);
+
+	glVertex2d(r_x, r_y);
+	glVertex2d(c_x, c_y);
+
+	glEnd();
+}
 
 //左下の頂点座標を(x,y)として、幅w,高さhの四角形を描画する関数
 void draw_sq(float x, float y, float w, float h){
@@ -74,6 +101,9 @@ void display(void){
 	draw_sq		(-0.03, 0.75, 0.06, 0.075);
 	draw_line_sq	(-0.03, 0.75, 0.06, 0.075, 1.0, 1.0, 0.0);
 	//		屋根
+	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
+	draw_tri	(0.0, 0.87, -0.05, 0.825, 0.05, 0.825);
+	draw_line_tri	(0.0, 0.87, -0.05, 0.825, 0.05, 0.825, 1.0, 1.0, 0.0);
 	
 
 	glFlush();
