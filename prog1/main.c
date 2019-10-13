@@ -148,6 +148,15 @@ void display(void){
 	for(int i = 1; i <= 4; i++){ 
 		draw_line_sq(-0.05-pattern_w, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h, 1.0, 1.0, 0.0);
 		draw_line_sq(+0.05, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h, 1.0, 1.0, 0.0);
+		// 窓ガラス部分
+		if(i == 1){
+			glColor3d(255.0/255.0, 255.0/255.0, 255.0/255.0);
+			draw_sq		(-0.05-pattern_w, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h);
+			draw_line_sq	(-0.05-pattern_w, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h, 128.0/255.0, 128.0/255.0, 128.0/255.0);
+			glColor3d(255.0/255.0, 255.0/255.0, 255.0/255.0);
+			draw_sq		(+0.05, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h);
+			draw_line_sq	(+0.05, 0.4 - (distance + pattern_h) * i, pattern_w, pattern_h, 128.0/255.0, 128.0/255.0, 128.0/255.0);
+		}
 		if(i == 2){
 			int frame = 0.02;
 			glColor3d(192.0/255.0, 192.0/255.0, 192.0/255.0);
