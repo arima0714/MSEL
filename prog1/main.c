@@ -1,5 +1,7 @@
 #include <GL/glut.h>
 
+// MacOS : gcc main.c -framework GLUT -framework OpenGL -mmacosx-version-min=10.8
+
 //三角形を描画する関数
 void draw_tri(float c_x, float c_y, float l_x, float l_y, float r_x, float r_y){
 	glBegin(GL_POLYGON);
@@ -62,12 +64,79 @@ void draw_line_sq(float x, float y, float w, float h, float R, float G, float B)
 	glEnd();
 }
 
+// 背景の設定
+void background(){
+
+	int x;
+	int y;
+	int w = 1.0;
+	int h = 1.0;
+
+	//  左上
+	x = -1.0;
+	y = +0.0;
+	glBegin(GL_POLYGON);
+	glColor3d(1.0, 0.0, 0.0); // 赤
+	glVertex2d(x, y);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x+w, y);
+	glColor3d(1.0, 0.0, 0.0); // 赤
+	glVertex2d(x+w, y+h);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x, y+h);
+	glEnd();
+
+	// 左下
+	x = -1.0;
+	y = -1.0;
+	glBegin(GL_POLYGON);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x, y);
+	glColor3d(0.0, 0.0, 1.0); // 青
+	glVertex2d(x+w, y);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x+w, y+h);
+	glColor3d(0.0, 0.0, 1.0); // 青
+	glVertex2d(x, y+h);
+	glEnd();
+
+	// 右下
+	x = +0.0;
+	y = -1.0;
+	glBegin(GL_POLYGON);
+	glColor3d(1.0, 1.0, 0.0); // 黄
+	glVertex2d(x, y);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x+w, y);
+	glColor3d(1.0, 1.0, 0.0); // 黄
+	glVertex2d(x+w, y+h);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x, y+h);
+	glEnd();
+
+	// 右上
+	x = +0.0;
+	y = +0.0;
+	glBegin(GL_POLYGON);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x, y);
+	glColor3d(0.0, 1.0, 0.0); // 緑
+	glVertex2d(x+w, y);
+	glColor3d(0.0, 0.0, 0.0); // 白
+	glVertex2d(x+w, y+h);
+	glColor3d(0.0, 1.0, 0.0); // 緑
+	glVertex2d(x, y+h);
+	glEnd();
+}
+
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glColor3d(1.0, 0.0, 0.0);
 	draw_sq(-0.9, -0.9, 1.8, 1.8);
 
+	// 背景
+	background();
 	// 本体
 	glColor3d(25.0/255.0, 23.0/255.0, 112.0/255.0);
 	draw_sq(-0.4, -0.8, 0.8, 1.3);
