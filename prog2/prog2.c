@@ -20,6 +20,15 @@ int face[][4] = {
 	{ 3, 2, 6, 7 },
 };
 
+GLdouble normal[][3] = {
+	{ 0.0, 0.0,-1.0 },
+	{ 1.0, 0.0, 0.0 },
+	{ 0.0, 0.0, 1.0 },
+	{-1.0, 0.0, 0.0 },
+	{ 0.0,-1.0, 0.0 },
+	{ 0.0, 1.0, 0.0 },
+};
+
 GLdouble color[][3] = {
 	{ 001.0, 000.0, 000.0}, // 赤
 	{ 000.0, 001.0, 000.0}, // 緑
@@ -64,7 +73,7 @@ void display(void){
 	glColor3d(0.0,0.0,0.0);
 	glBegin(GL_QUADS);
 	for(j = 0; j < 6; ++j){
-		glColor3dv(color[j]);
+		glNormal3dv(normal[j]);
 		for(i = 0; i < 4; ++i){
 			glVertex3dv(vertex[face[j][i]]);
 		}
@@ -122,10 +131,14 @@ void keyboard(unsigned char key, int x, int y){
 
 void init(void){
 	glClearColor(1.0, 1.0, 1.0, 1.0);
+
 	glEnable(GL_DEPTH_TEST);
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 }
 
 int main(int argc, char *argv[]){
