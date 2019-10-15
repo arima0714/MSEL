@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <GL/glut.h>
 
 #define MAXPOINTS 100		// 記憶する点の数
@@ -85,6 +86,17 @@ void motion(int x, int y){
 	rubberband = 1;
 }
 
+void keyboard(unsigned char key, int x, int y){
+	switch(key){
+		case 'q':
+		case 'Q':
+		case '\033':	// '\033'はESCのASCIIコード
+			exit(0);
+		default:
+			break;
+	}
+}
+
 void init(void){
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 }
@@ -99,6 +111,7 @@ int main(int argc, char *argv[]){
 	glutReshapeFunc(resize);
 	glutMouseFunc(mouse);
 	glutMotionFunc(motion);
+	glutKeyboardFunc(keyboard);
 	init();
 	glutMainLoop();
 	return 0;
