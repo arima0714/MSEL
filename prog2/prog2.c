@@ -58,7 +58,7 @@ void display(void){
 	glLoadIdentity();
 
 	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	// 視点位置と視線方向
-	glRotated((double)r, 0.0, 1.0, 0.0);
+	glRotated((double)r, 0.0, 1.0, 0.0);	// 図形の回転
 
 	// 図形の描画
 	glColor3d(0.0,0.0,0.0);
@@ -123,6 +123,9 @@ void keyboard(unsigned char key, int x, int y){
 void init(void){
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glEnable(GL_DEPTH_TEST);
+
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 }
 
 int main(int argc, char *argv[]){
