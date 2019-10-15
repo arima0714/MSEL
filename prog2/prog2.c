@@ -11,6 +11,24 @@ GLdouble vertex[][3] = {
 	{ 000.0, 001.0, 001.0},
 };
 
+int face[][4] = {
+	{ 0, 1, 2, 3 },
+	{ 1, 5, 6, 2 },
+	{ 5, 4, 7, 6 },
+	{ 4, 0, 3, 7 },
+	{ 4, 5, 1, 0 },
+	{ 3, 2, 6, 7 },
+};
+
+GLdouble color[][3] = {
+	{ 001.0, 000.0, 000.0}, // 赤
+	{ 000.0, 001.0, 000.0}, // 緑
+	{ 000.0, 000.0, 001.0}, // 青
+	{ 001.0, 001.0, 000.0}, // 黄
+	{ 001.0, 000.0, 001.0}, // マゼンタ
+	{ 000.0, 001.0, 001.0}, // シアン
+};
+
 int edge[][2] = {
 	{ 0, 1 },
 	{ 1, 2 },
@@ -32,6 +50,7 @@ void idle(void){
 
 void display(void){
 	int i;
+	int j;
 	static int r = 0;	// 回転角
 
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -43,10 +62,12 @@ void display(void){
 
 	// 図形の描画
 	glColor3d(0.0,0.0,0.0);
-	glBegin(GL_LINES);
-	for(i = 0; i < 12; ++i){
-		glVertex3dv(vertex[edge[i][0]]);
-		glVertex3dv(vertex[edge[i][1]]);
+	glBegin(GL_QUADS);
+	for(j = 0; j < 6; ++j){
+		glColor3dv(color[j]);
+		for(i = 0; i < 4; ++i){
+			glVertex3dv(vertex[face[j][i]]);
+		}
 	}
 	glEnd();
 	glutSwapBuffers();
