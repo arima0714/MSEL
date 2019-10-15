@@ -35,6 +35,7 @@ GLfloat light0pos[] = { 0.0, 3.0, 5.0, 1.0 };
 GLfloat light1pos[] = { 5.0, 3.0, 0.0, 1.0 };
 // 二つ目の光源を緑にする
 GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
+GLfloat red[] = { 0.8, 0.2, 0.2, 1.0};
 
 GLdouble color[][3] = {
 	{ 001.0, 000.0, 000.0}, // 赤
@@ -80,8 +81,9 @@ void display(void){
 
 	glRotated((double)r, 0.0, 1.0, 0.0);	// 図形の回転
 
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);	// 図形の色(赤)
+
 	// 図形の描画
-	glColor3d(0.0,0.0,0.0);
 	glBegin(GL_QUADS);
 	for(j = 0; j < 6; ++j){
 		glNormal3dv(normal[j]);
