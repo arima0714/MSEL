@@ -35,7 +35,22 @@ GLfloat light0pos[] = { 0.0, 3.0, 5.0, 1.0 };
 GLfloat light1pos[] = { 5.0, 3.0, 0.0, 1.0 };
 // 二つ目の光源を緑にする
 GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
-GLfloat red[] = { 0.8, 0.2, 0.2, 1.0};
+GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
+GLfloat blue[] = {0.2, 0.2, 0.8, 1.0 };
+
+void cube(void){
+	int i;
+	int j;
+
+	glBegin(GL_QUADS);
+	for(j = 0; j < 6; ++j){
+		glNormal3dv(normal[j]);
+		for(i = 0; i < 4; ++i){
+			glVertex3dv(vertex[face[j][i]]);
+		}
+	}
+	glEnd();
+}
 
 GLdouble color[][3] = {
 	{ 001.0, 000.0, 000.0}, // 赤
@@ -78,20 +93,30 @@ void display(void){
 	// 光源の位置設定
 	glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
 	glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
+	
+	// モデルビュー変換行列の保存
+	glPushMatrix();
 
-	glRotated((double)r, 0.0, 1.0, 0.0);	// 図形の回転
+	// 図形の回転
+	glRotated((double)r, 0.0, 1.0, 0.0);
 
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);	// 図形の色(赤)
+	// 図形の色(赤)
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);	
 
 	// 図形の描画
-	glBegin(GL_QUADS);
-	for(j = 0; j < 6; ++j){
-		glNormal3dv(normal[j]);
-		for(i = 0; i < 4; ++i){
-			glVertex3dv(vertex[face[j][i]]);
-		}
-	}
-	glEnd();
+	cube();
+
+	// 二つ目の図形の描画
+	glPushMatrix();
+	glTranslated(1.0, 1.0, 1.0);
+	glRotated((double)(2 * r), 0.0, 1.0, 0.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, blue);
+	cube();
+	glPopMatrix();
+
+	// モデルビュー変換行列の復帰
+	glPopMatrix();
+
 	glutSwapBuffers();
 
 	// 一周回ったら回転角を0に戻す
@@ -106,6 +131,8 @@ void resize(int w, int h){
 	gluPerspective(30.0, (double)w / (double)h, 1.0, 100.0);
 	// モデルビュー変換行列の設定
 	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
 void mouse(int button, int state, int x, int y){
