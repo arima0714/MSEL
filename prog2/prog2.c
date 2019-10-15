@@ -45,7 +45,8 @@ void resize(int w, int h){
 	glViewport(0, 0, w, h);
 
 	glLoadIdentity();
-	glOrtho(-2.0, 2.0,-2.0, 2.0,-2.0, 2.0);
+	gluPerspective(30.0, (double)w / (double)h, 1.0, 100.0);
+	glTranslated(0.0, 0.0, -5.0);
 }
 
 void init(void){
