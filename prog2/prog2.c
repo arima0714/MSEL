@@ -29,6 +29,13 @@ GLdouble normal[][3] = {
 	{ 0.0, 1.0, 0.0 },
 };
 
+// Z軸上斜め上の最初の光源(GL_LIGHT0)
+GLfloat light0pos[] = { 0.0, 3.0, 5.0, 1.0 };
+// X軸上斜め上の二つ目の光源(GL_LIGHT1)
+GLfloat light1pos[] = { 5.0, 3.0, 0.0, 1.0 };
+// 二つ目の光源を緑にする
+GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
+
 GLdouble color[][3] = {
 	{ 001.0, 000.0, 000.0}, // 赤
 	{ 000.0, 001.0, 000.0}, // 緑
@@ -67,6 +74,10 @@ void display(void){
 	glLoadIdentity();
 
 	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	// 視点位置と視線方向
+	// 光源の位置設定
+	glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
+	glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
+
 	glRotated((double)r, 0.0, 1.0, 0.0);	// 図形の回転
 
 	// 図形の描画
@@ -139,6 +150,9 @@ void init(void){
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, green);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, green);
 }
 
 int main(int argc, char *argv[]){
