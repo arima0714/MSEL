@@ -104,13 +104,13 @@ void display(void){
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);	
 
 	// 図形の描画
-	cube();
+	glutSolidCube(1.0);
 
 	// 二つ目の図形の描画
 	glTranslated(1.0, 1.0, 1.0);
 	glRotated((double)(2 * r), 0.0, 1.0, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, blue);
-	cube();
+	glutSolidCube(1.0);
 
 	// モデルビュー変換行列の復帰
 	glPopMatrix();
