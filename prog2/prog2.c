@@ -53,7 +53,7 @@ void display(void){
 	int j;
 	static int r = 0;	// 回転角
 
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glLoadIdentity();
 
@@ -122,11 +122,12 @@ void keyboard(unsigned char key, int x, int y){
 
 void init(void){
 	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glEnable(GL_DEPTH_TEST);
 }
 
 int main(int argc, char *argv[]){
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutCreateWindow(argv[0]);
 	glutDisplayFunc(display);
 	glutReshapeFunc(resize);
