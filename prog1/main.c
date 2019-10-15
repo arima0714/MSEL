@@ -1,3 +1,8 @@
+// 氏名：有馬海人
+// 学籍番号：1710021
+// メールアドレス：a1710021@edu.cc.uec.ac.jp
+// 作品タイトル：famous time machine
+
 #include <GL/glut.h>
 
 // MacOS : gcc main.c -framework GLUT -framework OpenGL -mmacosx-version-min=10.8
