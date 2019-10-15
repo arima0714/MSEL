@@ -107,12 +107,10 @@ void display(void){
 	cube();
 
 	// 二つ目の図形の描画
-	glPushMatrix();
 	glTranslated(1.0, 1.0, 1.0);
 	glRotated((double)(2 * r), 0.0, 1.0, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, blue);
 	cube();
-	glPopMatrix();
 
 	// モデルビュー変換行列の復帰
 	glPopMatrix();
