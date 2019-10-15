@@ -33,10 +33,17 @@ GLdouble normal[][3] = {
 GLfloat light0pos[] = { 0.0, 3.0, 5.0, 1.0 };
 // X軸上斜め上の二つ目の光源(GL_LIGHT1)
 GLfloat light1pos[] = { 5.0, 3.0, 0.0, 1.0 };
-// 二つ目の光源を緑にする
-GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
-GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
+
+// 物体の色配列群
 GLfloat blue[] = {0.2, 0.2, 0.8, 1.0 };
+GLfloat black[] = {000.0/255.0, 000.0/255.0, 000.0/255.0, 1.0};
+// forestgreen : 木の葉
+GLfloat forestgreen[] = {34.0/255.0, 139.0/255.0, 34.0/255.0, 1.0};
+GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
+// peru : 木の幹,
+GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
+GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
+GLfloat white[] = {001.0/255.0, 001.0/255.0, 001.0/255.0, 1.0};
 
 void cube(void){
 	int i;
@@ -80,6 +87,31 @@ void idle(void){
 	glutPostRedisplay();
 }
 
+void tree(void){
+	glPushMatrix();
+	// 木の幹
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, peru);	
+	glutSolidCube(1.0);
+	glTranslated(0.0, 1.0, 0.0);
+	glutSolidCube(1.0);
+	// 木の葉
+	glPushMatrix();
+	glTranslated(0.0, 0.70, 0.0);
+	glRotated(90.0, 1.0, 0.0, 0.0);
+	glRotated(180.0, 0.0, 1.0, 0.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, forestgreen);
+	glutSolidCone(1.5, 2.0, 64.0, 64.0);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslated(0.0, 1.70, 0.0);
+	glRotated(90.0, 1.0, 0.0, 0.0);
+	glRotated(180.0, 0.0, 1.0, 0.0);
+	glutSolidCone(1.0, 3.0, 64.0, 64.0);
+	glPopMatrix();
+	glPopMatrix();
+}
+	
+
 void display(void){
 	int i;
 	int j;
@@ -89,7 +121,8 @@ void display(void){
 
 	glLoadIdentity();
 
-	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	// 視点位置と視線方向
+	// 視点位置と視線方向
+	gluLookAt(15.0, 20.0, 25.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	// 光源の位置設定
 	glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
 	glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
@@ -97,14 +130,8 @@ void display(void){
 	// モデルビュー変換行列の保存
 	glPushMatrix();
 
-	// 図形の回転
-	glRotated((double)r, 0.0, 1.0, 0.0);
-
-	// 図形の色(赤)
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, red);	
-
 	// 図形の描画
-	glutSolidCube(1.0);
+	tree();
 
 	// 二つ目の図形の描画
 	glTranslated(1.0, 1.0, 1.0);
@@ -178,8 +205,8 @@ void init(void){
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, green);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, green);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
 }
 
 int main(int argc, char *argv[]){
