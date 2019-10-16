@@ -87,6 +87,29 @@ void idle(void){
 	glutPostRedisplay();
 }
 
+void vec_ground(void){
+	double ground_max_y = 300.0;
+	double ground_max_x = 300.0;
+
+	glColor3d(0.8, 0.8, 0.8);
+
+	glBegin(GL_LINES);
+	for(double ly = -ground_max_y; ly <= ground_max_y; ly+=10.0){
+		glVertex3d(-ground_max_x, ly, 0);
+		glVertex3d(ground_max_x, ly, 0);
+	}
+	for(double lx = -ground_max_x; lx <= ground_max_x; lx += 10.0){
+		glVertex3d(lx, ground_max_y, 0);
+		glVertex3d(lx, -ground_max_y, 0);
+	}
+	glEnd();
+}
+
+void ground(void){
+	double ground_max_x = 100.0;
+	double ground_max_y = 100.0;
+}
+
 void tree(void){
 	glPushMatrix();
 	// 木の幹
@@ -111,7 +134,6 @@ void tree(void){
 	glPopMatrix();
 }
 	
-
 void display(void){
 	int i;
 	int j;
@@ -122,7 +144,11 @@ void display(void){
 	glLoadIdentity();
 
 	// 視点位置と視線方向
-	gluLookAt(15.0, 20.0, 25.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	//gluLookAt(15.0, 20.0, 25.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(
+			0.0, -100.0, 50.0,	// 視点の位置：x, y, z
+		       	0.0, 100.0, 0.0,		// 視界の中心位置の参照点座標：x, y, z
+		       	0.0, 0.0, 1.0);		// 視界の上方向ベクトル：x, y, z
 	// 光源の位置設定
 	glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
 	glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
@@ -130,9 +156,13 @@ void display(void){
 	// モデルビュー変換行列の保存
 	glPushMatrix();
 
+	// 行列の描画
+	vec_ground();
+
 	// 図形の描画
 	tree();
-
+	glutSolidCone(1.5, 2.0, 64.0, 64.0);
+	
 	// 二つ目の図形の描画
 	glTranslated(1.0, 1.0, 1.0);
 	glRotated((double)(2 * r), 0.0, 1.0, 0.0);
@@ -157,7 +187,10 @@ void resize(int w, int h){
 	// モデルビュー変換行列の設定
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(
+			0.0, -100.0, 50.0,	// 視点の位置：x, y, z
+		       	0.0, 100.0, 0.0,		// 視界の中心位置の参照点座標：x, y, z
+		       	0.0, 0.0, 1.0);		// 視界の上方向ベクトル：x, y, z
 }
 
 void mouse(int button, int state, int x, int y){
