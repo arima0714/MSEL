@@ -16,6 +16,13 @@ GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
 GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
 GLfloat white[] = {001.0/255.0, 001.0/255.0, 001.0/255.0, 1.0};
 
+void house(GLfloat *color){
+	glPushMatrix();
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, color);	
+	glutSolidCube(1.0);
+	glPopMatrix();
+}
+
 void tree(void){
 	glPushMatrix();
 	// 木の幹
@@ -62,6 +69,13 @@ void scene(void){
 	glTranslated(3.0, 0.0, -3.0);
 	tree();
 	glPopMatrix();
+
+	// 家
+	glPushMatrix();
+	glTranslated(3.0, 0.0, -3.0);
+	house();
+	glPopMatrix();
+	
 
 	glBegin(GL_QUADS);
 	glNormal3d(0.0, 1.0, 0.0);
