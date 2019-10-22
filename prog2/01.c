@@ -1,10 +1,46 @@
 #include <stdlib.h>
 #include <GL/glut.h>
 
+double camera_ex = 1.0;
+double camera_ez = 1.0;	// 視点の位置
+double camera_r = 0.0; 	// 視点の向き
+
+// 物体の色配列群
+GLfloat blue[] = {0.2, 0.2, 0.8, 1.0 };
+GLfloat black[] = {000.0/255.0, 000.0/255.0, 000.0/255.0, 1.0};
+// forestgreen : 木の葉
+GLfloat forestgreen[] = {34.0/255.0, 139.0/255.0, 34.0/255.0, 1.0};
+GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
+// peru : 木の幹,
+GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
+GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
+GLfloat white[] = {001.0/255.0, 001.0/255.0, 001.0/255.0, 1.0};
+
+void tree(void){
+	glPushMatrix();
+	// 木の幹
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, peru);	
+	glutSolidCube(1.0);
+	glTranslated(0.0, 1.0, 0.0);
+	glutSolidCube(1.0);
+	// 木の葉
+	glPushMatrix();
+	glTranslated(0.0, 0.70, 0.0);
+	glRotated(90.0, 1.0, 0.0, 0.0);
+	glRotated(180.0, 0.0, 1.0, 0.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, forestgreen);
+	glutSolidCone(1.5, 2.0, 64.0, 64.0);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslated(0.0, 1.70, 0.0);
+	glRotated(90.0, 1.0, 0.0, 0.0);
+	glRotated(180.0, 0.0, 1.0, 0.0);
+	glutSolidCone(1.0, 3.0, 64.0, 64.0);
+	glPopMatrix();
+	glPopMatrix();
+}
+
 void scene(void){
-	static GLfloat red[] = {0.8, 0.2, 0.2, 1.0};
-	static GLfloat green[] = {0.2, 0.8, 0.2, 1.0};
-	static GLfloat blue[] = {0.2, 0.2, 0.8, 1.0};
 	static GLfloat yellow[] = {0.8, 0.8, 0.2, 1.0};
 	static GLfloat ground[][4] = {
 		{0.6, 0.6, 0.6, 1.0},
@@ -19,6 +55,12 @@ void scene(void){
 	glTranslated(0.0, 0.0, -3.0);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, red);
 	glutSolidCube(1.0);
+	glPopMatrix();
+
+	// 木
+	glPushMatrix();
+	glTranslated(3.0, 0.0, -3.0);
+	tree();
 	glPopMatrix();
 
 	glBegin(GL_QUADS);
@@ -38,9 +80,6 @@ void scene(void){
 void Display(void){
 	static GLfloat lightpos[] = {3.0, 4.0, 5.0, 1.0};
 
-	static double ex = 0.0, ez = 0.0;	// 視点の位置
-	static double r = 0.0; 			// 視点の向き
-
 	// 画面クリア
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -48,8 +87,8 @@ void Display(void){
 	glLoadIdentity();
 
 	// 視点の移動
-	glRotated(r, 0.0, 1.0, 0.0);
-	glTranslated(ex, 0.0, ez);
+	glRotated(camera_r, 0.0, 1.0, 0.0);
+	glTranslated(camera_ex, 0.0, camera_ez);
 
 	// 光源の位置を設定
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
@@ -76,8 +115,27 @@ void resize(int w, int h){
 }
 
 void keyboard(unsigned char key , int x , int y){
-	if (key == '\033' || key == 'q'){
-		exit(0);
+	//if (key == '\033' || key == 'q'){
+	//	exit(0);
+	//}
+	switch(key){
+		case 'x':
+			camera_ex += 1;
+			break;
+		case 'z':
+			camera_ez += 1;
+			break;
+		case 'r':
+			camera_r += 10;
+			break;
+		case '\033':
+			exit(0);
+			break;
+		case 'q':
+			exit(0);
+			break;
+		default:
+			break;
 	}
 }
 
