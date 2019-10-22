@@ -16,10 +16,20 @@ GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
 GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
 GLfloat white[] = {001.0/255.0, 001.0/255.0, 001.0/255.0, 1.0};
 
-void house(GLfloat *color){
+void house(GLfloat *body, GLfloat *roof){
 	glPushMatrix();
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, color);	
+
+	// 本体(居住部)
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, body);	
 	glutSolidCube(1.0);
+
+	// 屋根
+	glPushMatrix();
+	glTranslated(0.0, 0.70, 0.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, roof);	
+	glutSolidCone(00.50, 01.00, 4, 4);
+	glPopMatrix();
+
 	glPopMatrix();
 }
 
@@ -72,8 +82,8 @@ void scene(void){
 
 	// 家
 	glPushMatrix();
-	glTranslated(3.0, 0.0, -3.0);
-	house();
+	glTranslated(3.0, 0.0, 3.0);
+	house(peru, red);
 	glPopMatrix();
 	
 
