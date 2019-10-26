@@ -27,7 +27,7 @@ void house(GLfloat *body, GLfloat *roof){
 	glPushMatrix();
 	glTranslated(0.0, 0.70, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, roof);	
-	glutSolidCone(00.50, 01.00, 4, 4);
+	glutSolidCone(00.50, 01.00, 5, 5);
 	glPopMatrix();
 
 	glPopMatrix();
@@ -82,7 +82,7 @@ void scene(void){
 
 	// 家
 	glPushMatrix();
-	glTranslated(3.0, 0.0, 3.0);
+	glTranslated(0.0, 0.0, 3.0);
 	house(peru, red);
 	glPopMatrix();
 	
