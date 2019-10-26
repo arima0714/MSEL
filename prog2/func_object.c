@@ -1,17 +1,6 @@
 #include <stdlib.h>
 #include <GL/glut.h>
 
-// 物体の色配列群
-GLfloat blue[] = {0.2, 0.2, 0.8, 1.0 };
-GLfloat black[] = {000.0/255.0, 000.0/255.0, 000.0/255.0, 1.0};
-// forestgreen : 木の葉
-GLfloat forestgreen[] = {34.0/255.0, 139.0/255.0, 34.0/255.0, 1.0};
-GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
-// peru : 木の幹,
-GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
-GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
-GLfloat white[] = {001.0/255.0, 001.0/255.0, 001.0/255.0, 1.0};
-
 void house(GLfloat *body, GLfloat *roof){
 	glPushMatrix();
 
@@ -29,10 +18,10 @@ void house(GLfloat *body, GLfloat *roof){
 	glPopMatrix();
 }
 
-void tree(void){
+void tree(GLfloat *body_color, GLfloat *leavs){
 	glPushMatrix();
 	// 木の幹
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, peru);	
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, body_color);	
 	glutSolidCube(1.0);
 	glTranslated(0.0, 1.0, 0.0);
 	glutSolidCube(1.0);
@@ -41,7 +30,7 @@ void tree(void){
 	glTranslated(0.0, 0.70, 0.0);
 	glRotated(90.0, 1.0, 0.0, 0.0);
 	glRotated(180.0, 0.0, 1.0, 0.0);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, forestgreen);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, leavs);
 	glutSolidCone(1.5, 2.0, 64.0, 64.0);
 	glPopMatrix();
 	glPushMatrix();

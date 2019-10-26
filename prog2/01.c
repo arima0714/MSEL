@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 #include "func_object.h"
 
-/ 物体の色配列群
+// 物体の色配列群
 GLfloat blue[] = {0.2, 0.2, 0.8, 1.0 };
 GLfloat black[] = {000.0/255.0, 000.0/255.0, 000.0/255.0, 1.0};
 // forestgreen : 木の葉
@@ -37,7 +37,7 @@ void scene(void){
 	// 木
 	glPushMatrix();
 	glTranslated(3.0, 0.0, -3.0);
-	tree();
+	tree(peru, forestgreen);
 	glPopMatrix();
 
 	// 家
