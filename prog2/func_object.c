@@ -12,7 +12,7 @@ void house(GLfloat *body, GLfloat *roof){
 	glPushMatrix();
 	glTranslated(0.0, 0.70, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, roof);	
-	glutSolidCone(00.50, 01.00, 5, 5);
+	glutSolidCone(00.50, 01.00, 15, 15);
 	glPopMatrix();
 
 	glPopMatrix();
