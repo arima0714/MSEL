@@ -49,7 +49,6 @@ void scene(void){
 	house(peru, red);
 	glPopMatrix();
 	
-
 	glBegin(GL_QUADS);
 	glNormal3d(0.0, 1.0, 0.0);
 	for(j = -5; j < 5; j++){
@@ -96,7 +95,7 @@ void resize(int w, int h){
 	// 透視変換行列の初期化
 	glLoadIdentity();
 	gluPerspective(30.0, (double)w / (double)h, 1.0, 100.0);
-	gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(10.0, 12.0, 20.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	// モデルビュー変換行列の指定
 	glMatrixMode(GL_MODELVIEW);
