@@ -48,6 +48,8 @@ void scene(void){
 	
 	// 車
 	glPushMatrix();
+	glTranslated(-1.0, 4.0, 4.0);
+	car(red, black);
 	glPopMatrix();
 
 	glBegin(GL_QUADS);
