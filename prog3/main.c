@@ -42,7 +42,7 @@ void scene(void){
 	int i;
 	int j;
 
-	for(int k = -3; k < 4; k += 4){
+	for(int k = -4; k < 4; k += 3.5){
 		// 木
 		glPushMatrix();
 		glTranslated(k, 0.0, -3.0);
@@ -50,15 +50,17 @@ void scene(void){
 		glPopMatrix();
 	}
 
-	// 家
-	glPushMatrix();
-	glTranslated(0.0, 0.0, 3.0);
-	house(peru, red);
-	glPopMatrix();
+	for(int k = -4; k < 4; k += 2.0){
+		// 家
+		glPushMatrix();
+		glTranslated(k, 0.0, 3.0);
+		house(peru, red);
+		glPopMatrix();
+	}
 	
 	// 車
 	glPushMatrix();
-	glTranslated(0.0, 0.0, 0.0);
+	glTranslated(4.0 + car_x, 0.0, 0.0);
 	car(white, black);
 	glPopMatrix();
 
