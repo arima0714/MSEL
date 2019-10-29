@@ -1,5 +1,8 @@
 #include <stdlib.h>
 #include <GL/glut.h>
+#ifdef TEST
+#include <stdio.h>
+#endif
 
 void house(GLfloat *body, GLfloat *roof){
 	glPushMatrix();
@@ -55,6 +58,9 @@ void car(GLfloat *body, GLfloat *tire){
 	tire_cap2 = gluNewQuadric();
 	float tire_rad = 0.25;
 	float tire_height = 1.2;
+
+#ifdef TEST
+#endif
 
 	glPushMatrix();
 
