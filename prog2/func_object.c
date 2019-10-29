@@ -45,3 +45,23 @@ void tree(GLfloat *body_color, GLfloat *leavs){
 	glPopMatrix();
 }
 
+void car(GLfloat *body, GLfloat *tire){
+	glPushMatrix();
+
+	// 本体(居住部)
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, body);	
+	glutSolidCube(1.0);
+
+	// タイヤ
+	glPushMatrix();
+	glTranslated(0.0, 0.50, 0.0);
+	glRotated(90.0, 1.0, 0.0, 0.0);
+	glRotated(180.0, 0.0, 1.0, 0.0);
+	glRotated(45.0, 0.0, 0.0, 1.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, roof);	
+	glutSolidCone(00.90, 00.90, 4, 4);
+	glPopMatrix();
+
+	glPopMatrix();
+}
+

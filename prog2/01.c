@@ -46,6 +46,10 @@ void scene(void){
 	house(peru, red);
 	glPopMatrix();
 	
+	// 車
+	glPushMatrix();
+	glPopMatrix();
+
 	glBegin(GL_QUADS);
 	glNormal3d(0.0, 1.0, 0.0);
 	for(j = -5; j < 5; j++){
