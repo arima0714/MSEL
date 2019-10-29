@@ -11,11 +11,26 @@ GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
 // peru : 木の幹,
 GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
 GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
-GLfloat white[] = {001.0/255.0, 001.0/255.0, 001.0/255.0, 1.0};
+GLfloat white[] = {255.0/255.0, 255.0/255.0, 255.0/255.0, 1.0};
 
 double camera_ex = 1.0;
 double camera_ez = 1.0;	// 視点の位置
 double camera_r = 0.0; 	// 視点の向き
+
+int car_x = -4.0;
+
+void timer(int value){
+	// 車のx座標を増加
+	car_x += 0.01;
+
+	if(car_x >= 5.0){
+		car_x = -4.0;
+	}
+
+	glutPostRedisplay();
+
+	glutTimerFunc(100, timer, 0);
+}
 
 void scene(void){
 	static GLfloat yellow[] = {0.8, 0.8, 0.2, 1.0};
@@ -27,11 +42,13 @@ void scene(void){
 	int i;
 	int j;
 
-	// 木
-	glPushMatrix();
-	glTranslated(3.0, 0.0, -3.0);
-	tree(peru, forestgreen);
-	glPopMatrix();
+	for(int k = -3; k < 4; k += 4){
+		// 木
+		glPushMatrix();
+		glTranslated(k, 0.0, -3.0);
+		tree(peru, forestgreen);
+		glPopMatrix();
+	}
 
 	// 家
 	glPushMatrix();
@@ -41,8 +58,14 @@ void scene(void){
 	
 	// 車
 	glPushMatrix();
-	glTranslated(-1.0, 4.0, 4.0);
-	car(red, black);
+	glTranslated(0.0, 0.0, 0.0);
+	car(white, black);
+	glPopMatrix();
+
+	// 車
+	glPushMatrix();
+	glTranslated(car_x, 0.0, 0.0);
+	car(white, black);
 	glPopMatrix();
 
 	glBegin(GL_QUADS);
@@ -139,6 +162,7 @@ int main(int argc, char *argv[]){
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(keyboard);
 	init();
+	glutTimerFunc(100, timer, 0);
 	glutMainLoop();
 	return 0;
 }

@@ -49,44 +49,48 @@ void tree(GLfloat *body_color, GLfloat *leavs){
 }
 
 void car(GLfloat *body, GLfloat *tire){
+	glPushMatrix();	// 関数全体用
 
-	GLUquadricObj *tire_body;
 	GLUquadricObj *tire_cap1;
 	GLUquadricObj *tire_cap2;
-	tire_body = gluNewQuadric();
+	GLUquadricObj *tire_cap3;
+	GLUquadricObj *tire_cap4;
 	tire_cap1 = gluNewQuadric();
 	tire_cap2 = gluNewQuadric();
+	tire_cap3 = gluNewQuadric();
+	tire_cap4 = gluNewQuadric();
 	float tire_rad = 0.25;
-	float tire_height = 1.2;
 
-#ifdef TEST
-#endif
-
+	// 車輪
 	glPushMatrix();
-
-	glPushMatrix();
-	// 本体(居住部)
-	glTranslated(0.0, 0.20, 0.0);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, body);	
-	glutSolidCube(1.0);
-	glPopMatrix();
-
-	// タイヤ
-	glPushMatrix();
+	glTranslated(-0.25, 0.0, -0.51);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
-	//	タイヤふた１
-	glPushMatrix();
-	glTranslated(5.0, 5.00, 5.0);
 	gluDisk(tire_cap1, 0, tire_rad, 20, 20);
 	glPopMatrix();
-	//	タイヤ本体
-	gluCylinder(tire_body, tire_rad, tire_rad, tire_height, 20.0, 20.0);
-	//	タイヤふた２
+	// 車輪
 	glPushMatrix();
+	glTranslated(0.25, 0.0, -0.51);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
 	gluDisk(tire_cap2, 0, tire_rad, 20, 20);
 	glPopMatrix();
+	// 車輪
+	glPushMatrix();
+	glTranslated(0.25, 0.0, 0.51);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
+	gluDisk(tire_cap3, 0, tire_rad, 20, 20);
 	glPopMatrix();
-
+	// 車輪
+	glPushMatrix();
+	glTranslated(-0.25, 0.0, 0.51);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
+	gluDisk(tire_cap4, 0, tire_rad, 20, 20);
 	glPopMatrix();
+	// 車体 
+	glPushMatrix();
+	glTranslated(0.0, 0.30, 0.0);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, body);
+	glutSolidCube(1.0);
+	glPopMatrix();
+	glPopMatrix();	// 関数全体用
 }
 
