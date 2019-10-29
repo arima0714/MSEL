@@ -49,7 +49,8 @@ void car(GLfloat *body, GLfloat *tire){
 
 	GLUquadricObj *qobj;
 	qobj = gluNewQuadric();
-	float rad = 0.25;
+	float tire_rad = 0.25;
+	float tire_height = 1.2;
 
 	glPushMatrix();
 
@@ -64,7 +65,7 @@ void car(GLfloat *body, GLfloat *tire){
 //	glRotated(180.0, 0.0, 1.0, 0.0);
 //	glRotated(45.0, 0.0, 0.0, 1.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
-	gluCylinder(qobj, rad, rad, 3.0, 20.0, 20.0);
+	gluCylinder(qobj, tire_rad, tire_rad, tire_height, 20.0, 20.0);
 //	glutSolidCone(00.90, 00.90, 4, 4);
 	glPopMatrix();
 
