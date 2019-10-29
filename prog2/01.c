@@ -47,6 +47,8 @@ void scene(void){
 	glPopMatrix();
 	
 	// 車
+#ifdef TEST
+#endif
 	glPushMatrix();
 	glTranslated(-1.0, 4.0, 4.0);
 	car(red, black);
