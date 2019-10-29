@@ -63,13 +63,8 @@ void car(GLfloat *body, GLfloat *tire){
 
 	// タイヤ
 	glPushMatrix();
-//	glTranslated(0.0, 0.50, 0.0);
-//	glRotated(90.0, 1.0, 0.0, 0.0);
-//	glRotated(180.0, 0.0, 1.0, 0.0);
-//	glRotated(45.0, 0.0, 0.0, 1.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
 	gluCylinder(qobj, tire_rad, tire_rad, tire_height, 20.0, 20.0);
-//	glutSolidCone(00.90, 00.90, 4, 4);
 	glPopMatrix();
 
 	glPopMatrix();
