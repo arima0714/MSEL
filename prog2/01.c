@@ -27,13 +27,6 @@ void scene(void){
 	int i;
 	int j;
 
-	// 赤い箱
-	glPushMatrix();
-	glTranslated(0.0, 0.0, -3.0);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, red);
-	glutSolidCube(1.0);
-	glPopMatrix();
-
 	// 木
 	glPushMatrix();
 	glTranslated(3.0, 0.0, -3.0);
@@ -49,7 +42,7 @@ void scene(void){
 	// 車
 #ifdef TEST
 	glPushMatrix();
-	glTranslated(-1.0, 4.0, 4.0);
+	glTranslated(2.0, 2.0, 2.0);
 	car(red, black);
 	glPopMatrix();
 #endif
