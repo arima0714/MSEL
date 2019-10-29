@@ -13,9 +13,6 @@ GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
 GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
 GLfloat white[] = {001.0/255.0, 001.0/255.0, 001.0/255.0, 1.0};
 
-static int window_w = 100;
-static int window_h = 100;
-
 double camera_ex = 1.0;
 double camera_ez = 1.0;	// 視点の位置
 double camera_r = 0.0; 	// 視点の向き
