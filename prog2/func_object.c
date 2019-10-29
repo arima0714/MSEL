@@ -54,9 +54,12 @@ void car(GLfloat *body, GLfloat *tire){
 
 	glPushMatrix();
 
+	glPushMatrix();
 	// 本体(居住部)
+	glTranslated(0.0, 0.20, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, body);	
 	glutSolidCube(1.0);
+	glPopMatrix();
 
 	// タイヤ
 	glPushMatrix();
