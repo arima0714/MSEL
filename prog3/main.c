@@ -12,6 +12,8 @@ GLfloat green[] = { 0.0, 1.0, 0.0, 1.0 };
 GLfloat peru[] = {205.0/255.0, 133.0/255.0, 65.0/255.0, 1.0};
 GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
 GLfloat white[] = {255.0/255.0, 255.0/255.0, 255.0/255.0, 1.0};
+GLfloat mediumvioletred[] = {199.0/255.0, 21.0/255.0, 133.0/255.0, 1.0};
+GLfloat cornflowerblue[] = {100.0/255.0, 149.0/255.0, 237.0/255.0, 1.0};
 
 double camera_ex = 1.0;
 double camera_ez = 1.0;	// 視点の位置
@@ -21,11 +23,7 @@ int car_x = -4.0;
 
 void timer(int value){
 	// 車のx座標を増加
-	car_x += 0.01;
-
-	if(car_x >= 5.0){
-		car_x = -4.0;
-	}
+	car_x += 0.001;
 
 	glutPostRedisplay();
 
@@ -54,14 +52,14 @@ void scene(void){
 		// 家
 		glPushMatrix();
 		glTranslated(k, 0.0, 3.0);
-		house(peru, red);
+		house(peru, yellow);
 		glPopMatrix();
 	}
 	
 	// 車
 	glPushMatrix();
 	glTranslated(4.0 + car_x, 0.0, 0.0);
-	car(white, black);
+	car(blue, black);
 	glPopMatrix();
 
 	// 車
