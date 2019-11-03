@@ -14,6 +14,9 @@ GLfloat red[] = { 0.8, 0.2, 0.2, 1.0 };
 GLfloat white[] = {255.0/255.0, 255.0/255.0, 255.0/255.0, 1.0};
 GLfloat mediumvioletred[] = {199.0/255.0, 21.0/255.0, 133.0/255.0, 1.0};
 GLfloat cornflowerblue[] = {100.0/255.0, 149.0/255.0, 237.0/255.0, 1.0};
+GLfloat firebrick[] = {178.0/255.0, 34.0/255.0, 34.0/255.0, 1.0};
+GLfloat darkolivegreen[] = {85.0/255.0, 107.0/255.0, 47.0/255.0, 1.0};
+GLfloat olive[] = {128.0/255.0, 100.0/255.0, 0.0/255.0, 1.0};
 
 double camera_ex = 1.0;
 double camera_ez = 1.0;	// 視点の位置
@@ -48,13 +51,35 @@ void scene(void){
 		glPopMatrix();
 	}
 
-	for(int k = -4; k < 4; k += 2.0){
-		// 家
-		glPushMatrix();
-		glTranslated(k, 0.0, 3.0);
-		house(peru, yellow);
-		glPopMatrix();
-	}
+	// 家
+	glPushMatrix();
+	glTranslated(-4, 0.0, 3.0);
+	house(peru, yellow);
+	glPopMatrix();
+
+	// 家
+	glPushMatrix();
+	glTranslated(-2, 0.0, 3.0);
+	house(peru, mediumvioletred);
+	glPopMatrix();
+
+	// 家
+	glPushMatrix();
+	glTranslated(0, 0.0, 3.0);
+	house(peru, firebrick);
+	glPopMatrix();
+
+	// 家
+	glPushMatrix();
+	glTranslated(2, 0.0, 3.0);
+	house(peru, red);
+	glPopMatrix();
+
+	// 家
+	glPushMatrix();
+	glTranslated(4, 0.0, 3.0);
+	house(peru, cornflowerblue);
+	glPopMatrix();
 	
 	// 車
 	glPushMatrix();
