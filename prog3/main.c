@@ -21,9 +21,9 @@ GLfloat firebrick[] = {178.0/255.0, 34.0/255.0, 34.0/255.0, 1.0};
 GLfloat darkolivegreen[] = {85.0/255.0, 107.0/255.0, 47.0/255.0, 1.0};
 GLfloat olive[] = {128.0/255.0, 100.0/255.0, 0.0/255.0, 1.0};
 
-double theta = 0.0;
-double tau = 0.0;
-double circle_r = 10.0;
+double theta = 	45.0;
+double tau = 	45.0;
+double circle_r = 25.0;
 
 double camera_ex;
 double camera_ey;
