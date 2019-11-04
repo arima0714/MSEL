@@ -33,7 +33,7 @@ void tree(GLfloat *body_color, GLfloat *leavs){
 	glutSolidCube(1.0);
 	// 木の葉
 	glPushMatrix();
-	glTranslated(0.0, 0.70, 0.0);
+	glTranslated(0.0, 0.55, 0.0);
 	glRotated(90.0, 1.0, 0.0, 0.0);
 	glRotated(180.0, 0.0, 1.0, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, leavs);
