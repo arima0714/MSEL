@@ -135,7 +135,7 @@ void Display(void){
 
 	// 光源の位置を設定
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
-	gluLookAt(camera_ex, camera_ey, camera_ez, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(camera_ex, 20, camera_ez, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	// シーンの描画
 	scene();
@@ -159,17 +159,16 @@ void resize(int w, int h){
 }
 
 void keyboard(unsigned char key , int x , int y){
-	//if (key == '\033' || key == 'q'){
-	//	exit(0);
-	//}
 	switch(key){
 		case 'x':
+			theta += 1;
 			camera_ex = circle_r * cos(theta * PI / 180.0);
 			break;
 		case 'y':
 			camera_ey = circle_r * sin(theta * PI / 180.0);
 			break;
 		case 'z':
+			theta -= 1;
 			camera_ez = circle_r * sin(theta * PI / 180.0);
 			break;
 		case '\033':
@@ -178,6 +177,25 @@ void keyboard(unsigned char key , int x , int y){
 		case 'q':
 			exit(0);
 			break;
+		default:
+			break;
+	}
+}
+
+void sp_keyboard(int key , int x , int y){
+	switch(key){
+		case GLUT_KEY_LEFT:
+			theta += 1;
+			camera_ex = circle_r * cos(theta * PI / 180.0);
+			camera_ez = circle_r * sin(theta * PI / 180.0);
+			break;
+		case GLUT_KEY_RIGHT:
+			theta -= 1;
+			camera_ex = circle_r * cos(theta * PI / 180.0);
+			camera_ez = circle_r * sin(theta * PI / 180.0);
+			break;
+		case GLUT_KEY_UP:
+		case GLUT_KEY_DOWN:
 		default:
 			break;
 	}
@@ -204,6 +222,7 @@ int main(int argc, char *argv[]){
 	glutDisplayFunc(Display);
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(keyboard);
+	glutSpecialFunc(sp_keyboard);
 	init();
 	glutTimerFunc(100, timer, 0);
 	glutMainLoop();
