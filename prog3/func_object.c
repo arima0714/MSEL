@@ -63,31 +63,31 @@ void car(GLfloat *body, GLfloat *tire){
 
 	// 車輪
 	glPushMatrix();
-	glTranslated(-0.25, 0.0, -0.51);
+	glTranslated(-0.25, -0.25, -0.51);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
 	gluDisk(tire_cap1, 0, tire_rad, 20, 20);
 	glPopMatrix();
 	// 車輪
 	glPushMatrix();
-	glTranslated(0.25, 0.0, -0.51);
+	glTranslated(0.25, -0.25, -0.51);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
 	gluDisk(tire_cap2, 0, tire_rad, 20, 20);
 	glPopMatrix();
 	// 車輪
 	glPushMatrix();
-	glTranslated(0.25, 0.0, 0.51);
+	glTranslated(0.25, -0.25, 0.51);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
 	gluDisk(tire_cap3, 0, tire_rad, 20, 20);
 	glPopMatrix();
 	// 車輪
 	glPushMatrix();
-	glTranslated(-0.25, 0.0, 0.51);
+	glTranslated(-0.25, -0.25, 0.51);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, tire);
 	gluDisk(tire_cap4, 0, tire_rad, 20, 20);
 	glPopMatrix();
 	// 車体 
 	glPushMatrix();
-	glTranslated(0.0, 0.30, 0.0);
+	glTranslated(0.0, 0.25, 0.0);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, body);
 	glutSolidCube(1.0);
 	glPopMatrix();
