@@ -142,7 +142,7 @@ void Display(void){
 
 	// 光源の位置を設定
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
-	gluLookAt(camera_ex, 20, camera_ez, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(camera_ex, camera_ey, camera_ez, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	// シーンの描画
 	scene();
@@ -167,6 +167,14 @@ void resize(int w, int h){
 
 void keyboard(unsigned char key , int x , int y){
 	switch(key){
+		case 's':
+			circle_r += 3;
+			set_xyz();
+			break;
+		case 'w':
+			circle_r -= 3;
+			set_xyz();
+			break;
 		case 'x':
 			theta += 1;
 			set_xyz();
