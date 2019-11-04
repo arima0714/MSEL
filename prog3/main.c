@@ -21,12 +21,13 @@ GLfloat firebrick[] = {178.0/255.0, 34.0/255.0, 34.0/255.0, 1.0};
 GLfloat darkolivegreen[] = {85.0/255.0, 107.0/255.0, 47.0/255.0, 1.0};
 GLfloat olive[] = {128.0/255.0, 100.0/255.0, 0.0/255.0, 1.0};
 
-double camera_ex = 10.0;
-double camera_ey = 10.0;
-double camera_ez = 10.0;	// 視点の位置
-
 double theta = 0.0;
+double tau = 0.0;
 double circle_r = 10.0;
+
+double camera_ex;
+double camera_ey;
+double camera_ez;	// 視点の位置
 
 int car_x = -4.0;
 
@@ -134,7 +135,7 @@ void Display(void){
 
 	// 光源の位置を設定
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
-	gluLookAt(10.0, 12.0, 20.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(camera_ex, camera_ey, camera_ez, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	// シーンの描画
 	scene();
@@ -163,13 +164,13 @@ void keyboard(unsigned char key , int x , int y){
 	//}
 	switch(key){
 		case 'x':
-			camera_ex += 1;
+			camera_ex = circle_r * cos(theta * PI / 180.0);
 			break;
 		case 'y':
-			camera_ey += 1;
+			camera_ey = circle_r * sin(theta * PI / 180.0);
 			break;
 		case 'z':
-			camera_ez += 1;
+			camera_ez = circle_r * sin(theta * PI / 180.0);
 			break;
 		case '\033':
 			exit(0);
@@ -189,6 +190,11 @@ void init(void){
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+
+	//
+	camera_ex = circle_r * cos(theta * PI / 180.0);
+ 	camera_ey = circle_r * sin(theta * PI / 180.0);
+ 	camera_ez = circle_r * cos(theta * PI / 180.0);
 }
 
 int main(int argc, char *argv[]){
