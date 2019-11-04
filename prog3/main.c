@@ -165,6 +165,8 @@ void keyboard(unsigned char key , int x , int y){
 		case 'x':
 			camera_ex += 1;
 			break;
+		case 'y':
+			camera_ey += 1;
 		case 'z':
 			camera_ez += 1;
 			break;
