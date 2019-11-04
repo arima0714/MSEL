@@ -126,10 +126,6 @@ void Display(void){
 	// モデルビュー変換行列の初期化
 	glLoadIdentity();
 
-	// // 視点の移動
-	// glRotated(camera_r, 0.0, 1.0, 0.0);
-	// glTranslated(camera_ex, 0.0, camera_ez);
-
 	// 光源の位置を設定
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 	gluLookAt(10.0, 12.0, 20.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
@@ -165,9 +161,6 @@ void keyboard(unsigned char key , int x , int y){
 			break;
 		case 'z':
 			camera_ez += 1;
-			break;
-		case 'r':
-			camera_r += 10;
 			break;
 		case '\033':
 			exit(0);
