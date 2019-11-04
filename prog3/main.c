@@ -18,9 +18,9 @@ GLfloat firebrick[] = {178.0/255.0, 34.0/255.0, 34.0/255.0, 1.0};
 GLfloat darkolivegreen[] = {85.0/255.0, 107.0/255.0, 47.0/255.0, 1.0};
 GLfloat olive[] = {128.0/255.0, 100.0/255.0, 0.0/255.0, 1.0};
 
-double camera_ex = 1.0;
-double camera_ez = 1.0;	// 視点の位置
-double camera_r = 0.0; 	// 視点の向き
+double camera_ex = 10.0;
+double camera_ey = 10.0;
+double camera_ez = 10.0;	// 視点の位置
 
 int car_x = -4.0;
 
@@ -126,12 +126,13 @@ void Display(void){
 	// モデルビュー変換行列の初期化
 	glLoadIdentity();
 
-	// 視点の移動
-	glRotated(camera_r, 0.0, 1.0, 0.0);
-	glTranslated(camera_ex, 0.0, camera_ez);
+	// // 視点の移動
+	// glRotated(camera_r, 0.0, 1.0, 0.0);
+	// glTranslated(camera_ex, 0.0, camera_ez);
 
 	// 光源の位置を設定
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
+	gluLookAt(10.0, 12.0, 20.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	// シーンの描画
 	scene();
@@ -149,7 +150,6 @@ void resize(int w, int h){
 	// 透視変換行列の初期化
 	glLoadIdentity();
 	gluPerspective(30.0, (double)w / (double)h, 1.0, 100.0);
-	gluLookAt(10.0, 12.0, 20.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	// モデルビュー変換行列の指定
 	glMatrixMode(GL_MODELVIEW);
