@@ -31,6 +31,13 @@ double camera_ez;	// 視点の位置
 
 int car_x = -4.0;
 
+void set_xyz(void){
+	camera_ex = circle_r * cos(theta * PI / 180.0) * cos(tau * PI / 180.0);
+	camera_ez = circle_r * sin(theta * PI / 180.0) * cos(tau * PI / 180.0);
+
+ 	camera_ey = circle_r * sin(tau * PI / 180.0);
+}
+
 void timer(int value){
 	// 車のx座標を増加
 	car_x += 0.001;
@@ -162,14 +169,15 @@ void keyboard(unsigned char key , int x , int y){
 	switch(key){
 		case 'x':
 			theta += 1;
-			camera_ex = circle_r * cos(theta * PI / 180.0);
+			set_xyz();
 			break;
 		case 'y':
-			camera_ey = circle_r * sin(theta * PI / 180.0);
+			tau += 1;
+			set_xyz();
 			break;
 		case 'z':
 			theta -= 1;
-			camera_ez = circle_r * sin(theta * PI / 180.0);
+			set_xyz();
 			break;
 		case '\033':
 			exit(0);
@@ -186,16 +194,20 @@ void sp_keyboard(int key , int x , int y){
 	switch(key){
 		case GLUT_KEY_LEFT:
 			theta += 1;
-			camera_ex = circle_r * cos(theta * PI / 180.0);
-			camera_ez = circle_r * sin(theta * PI / 180.0);
+			set_xyz();
 			break;
 		case GLUT_KEY_RIGHT:
 			theta -= 1;
-			camera_ex = circle_r * cos(theta * PI / 180.0);
-			camera_ez = circle_r * sin(theta * PI / 180.0);
+			set_xyz();
 			break;
 		case GLUT_KEY_UP:
+			tau += 1;
+			set_xyz();
+			break;
 		case GLUT_KEY_DOWN:
+			tau -= 1;
+			set_xyz();
+			break;
 		default:
 			break;
 	}
@@ -208,11 +220,6 @@ void init(void){
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-
-	//
-	camera_ex = circle_r * cos(theta * PI / 180.0);
- 	camera_ey = circle_r * sin(theta * PI / 180.0);
- 	camera_ez = circle_r * cos(theta * PI / 180.0);
 }
 
 int main(int argc, char *argv[]){
