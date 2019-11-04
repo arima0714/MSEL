@@ -43,13 +43,23 @@ void scene(void){
 	int i;
 	int j;
 
-	for(int k = -4; k < 4; k += 3.5){
-		// 木
-		glPushMatrix();
-		glTranslated(k, 0.0, -3.0);
-		tree(peru, forestgreen);
-		glPopMatrix();
-	}
+	// 木
+	glPushMatrix();
+	glTranslated(-3, 0.0, -3.0);
+	tree(peru, darkolivegreen);
+	glPopMatrix();
+
+	// 木
+	glPushMatrix();
+	glTranslated(0, 0.0, -3.0);
+	tree(peru, olive);
+	glPopMatrix();
+
+	// 木
+	glPushMatrix();
+	glTranslated(3, 0.0, -3.0);
+	tree(peru, forestgreen);
+	glPopMatrix();
 
 	// 家
 	glPushMatrix();
