@@ -22,6 +22,8 @@ double camera_ex = 10.0;
 double camera_ey = 10.0;
 double camera_ez = 10.0;	// 視点の位置
 
+double circle_r = 10.0;
+
 int car_x = -4.0;
 
 void timer(int value){
