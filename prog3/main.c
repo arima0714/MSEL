@@ -193,19 +193,19 @@ void keyboard(unsigned char key , int x , int y){
 void sp_keyboard(int key , int x , int y){
 	switch(key){
 		case GLUT_KEY_LEFT:
-			theta += 1;
+			theta += 3;
 			set_xyz();
 			break;
 		case GLUT_KEY_RIGHT:
-			theta -= 1;
+			theta -= 3;
 			set_xyz();
 			break;
 		case GLUT_KEY_UP:
-			tau += 1;
+			tau += 3;
 			set_xyz();
 			break;
 		case GLUT_KEY_DOWN:
-			tau -= 1;
+			tau -= 3;
 			set_xyz();
 			break;
 		default:
