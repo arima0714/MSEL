@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <GL/glut.h>
 #include <math.h>
@@ -21,8 +22,8 @@ GLfloat firebrick[] = {178.0/255.0, 34.0/255.0, 34.0/255.0, 1.0};
 GLfloat darkolivegreen[] = {85.0/255.0, 107.0/255.0, 47.0/255.0, 1.0};
 GLfloat olive[] = {128.0/255.0, 100.0/255.0, 0.0/255.0, 1.0};
 
-double theta = 	90.0;
-double tau = -45.0;
+double theta = 	225.0;
+double tau = 0.0;
 double circle_r = 25.0;
 
 double cam_point_x = 5.0;
@@ -38,7 +39,6 @@ int car_x = -4.0;
 void set_xyz(void){
 	//	camera_ex = circle_r * cos(theta * PI / 180.0) * cos(tau * PI / 180.0);
 	//	camera_ez = circle_r * sin(theta * PI / 180.0) * cos(tau * PI / 180.0);
-
  	//	camera_ey = circle_r * sin(tau * PI / 180.0);
 
 	cam_point_x  = circle_r * cos(theta * PI / 180.0) * cos(tau * PI / 180.0);
@@ -175,13 +175,21 @@ void resize(int w, int h){
 }
 
 void keyboard(unsigned char key , int x , int y){
+	double diff_x = camera_ex - cam_point_x;
+	double diff_z = camera_ez - cam_point_z;
+	double c_r = pow(pow(diff_x , 2) + pow(diff_z , 2), 0.5) ;
+	double cos_t = diff_x / c_r;
+	double sin_t = diff_z / c_r;
+
 	switch(key){
 		case 's':
-			camera_ex--;
+			camera_ex += cos_t;
+			camera_ez += sin_t;;
 			set_xyz();
 			break;
 		case 'w':
-			camera_ex++;
+			camera_ex -= cos_t;
+			camera_ez -= sin_t;;
 			set_xyz();
 			break;
 		case 'a':
@@ -192,17 +200,9 @@ void keyboard(unsigned char key , int x , int y){
 			camera_ez++;
 			set_xyz();
 			break;
-		case 'x':
-			theta += 1;
-			set_xyz();
-			break;
-		case 'y':
-			tau += 1;
-			set_xyz();
-			break;
 		case 'z':
-			theta -= 1;
-			set_xyz();
+			printf(" camera_ex = %f \n camera_ey = %f \n camera_ez = %f \n", camera_ex, camera_ey, camera_ez);
+			printf(" tau = %f, theta = %f \n", tau, theta);
 			break;
 		case '\033':
 			exit(0);
