@@ -30,9 +30,9 @@ double cam_point_y = 0.0;
 double cam_point_z = 0.0;	// カメラの注視点の座標
 double cam_distance = 10;	// カメラと注視点までの距離
 
-double camera_ex;
-double camera_ey;
-double camera_ez;	// 視点の位置
+double camera_ex = 10.0;
+double camera_ey = 3.0;
+double camera_ez = 10.0;	// 視点の位置
 
 int car_x = -4.0;
 
