@@ -25,6 +25,11 @@ double theta = 	45.0;
 double tau = 	45.0;
 double circle_r = 25.0;
 
+double cam_point_x = 0.0;
+double cam_point_y = 0.0;
+double cam_point_z = 0.0;	// カメラの注視点の座標
+double cam_distance = 10;	// カメラと注視点までの距離
+
 double camera_ex;
 double camera_ey;
 double camera_ez;	// 視点の位置
@@ -142,7 +147,7 @@ void Display(void){
 
 	// 光源の位置を設定
 	glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
-	gluLookAt(camera_ex, camera_ey, camera_ez, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(camera_ex, camera_ey, camera_ez, cam_point_x, cam_point_y, cam_point_z, 0.0, 1.0, 0.0);
 
 	// シーンの描画
 	scene();
