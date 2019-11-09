@@ -189,20 +189,16 @@ void keyboard(unsigned char key , int x , int y){
 			break;
 		case 'w':
 			camera_ex -= cos_t;
-			camera_ez -= sin_t;;
-			set_xyz();
-			break;
-		case 'a':
-			camera_ez--;
+			camera_ez -= sin_t;
 			set_xyz();
 			break;
 		case 'd':
-			camera_ez++;
-			set_xyz();
+			camera_ex += sin_t;
+			camera_ez -= cos_t;
 			break;
-		case 'z':
-			printf(" camera_ex = %f \n camera_ey = %f \n camera_ez = %f \n", camera_ex, camera_ey, camera_ez);
-			printf(" tau = %f, theta = %f \n", tau, theta);
+		case 'a':
+			camera_ex -= sin_t;
+			camera_ez += cos_t;
 			break;
 		case '\033':
 			exit(0);
@@ -226,11 +222,11 @@ void sp_keyboard(int key , int x , int y){
 			set_xyz();
 			break;
 		case GLUT_KEY_UP:
-			tau -= 3;
+			tau += 3;
 			set_xyz();
 			break;
 		case GLUT_KEY_DOWN:
-			tau += 3;
+			tau -= 3;
 			set_xyz();
 			break;
 		default:
@@ -240,6 +236,7 @@ void sp_keyboard(int key , int x , int y){
 
 void init(void){
 	// 初期設定
+	set_xyz();
 	glClearColor(1.0,1.0,1.0,1.0);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
